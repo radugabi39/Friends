@@ -10,7 +10,9 @@ jdk folosit 1.8.0_91
 
 Instalare:
 Descarcati eclipse
-La instalarea mySQL-ului o sa va ceara sa mai instalati 2 chestii auxiliare, in rest e next next next,
+La instalarea mySQL-ului o sa va ceara sa mai instalati 2 chestii auxiliare. la MySQL root password puneti friends123 in rest e next next next. Dupa instalare creati urmatoarea schema cmd:         create database friendsdb;
+Instalati git cu next next next
+Dezarhivati tomcat.
 
 
 Pentru eclipse:
