@@ -20,3 +20,4 @@ Dati import maven project
 Window->preferences->Server-> Runtime EWnviroment-> Add -> Apache Tomcat 8.5 si dati browse unde ati dezarhivat tomcat.
 In tabul de servers definiti un server tomcat 8.5 -> Finish -> Click dreapta pe el -> properties si apasat Switch Location
 Ctrl+Shift+R si cautati server.xml aici trebuie sa puneti ce gasiti in fisierul copyServer.txt din resources, la fel pentru context.xml din copyContext
+Adaugati proiectul pe server and have fun!!!
