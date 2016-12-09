@@ -3,7 +3,8 @@ package fmi.friends.dao;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import fmi.friends.hibernateEntities.Employee;
+import fmi.friends.hibernateEntities.Item;
+
 
 public class TestDAO extends GenericDAO {
 	
@@ -11,9 +12,9 @@ public class TestDAO extends GenericDAO {
 	public String getNameById(int empId){
 		Session session = sessionFactory.getCurrentSession();
 		Transaction tx = session.beginTransaction();
-		Employee emp = (Employee) session.get(Employee.class, empId);
+		Item emp = (Item) session.get(Item.class, empId);
 		tx.commit();
-		return emp.getName();
+		return "test";
 	}
 
 }

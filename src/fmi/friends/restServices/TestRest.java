@@ -21,7 +21,6 @@ import org.jboss.logging.Logger;
 
 import fmi.firends.hibernateListener.HibernateUtil;
 import fmi.friends.dao.TestDAO;
-import fmi.friends.hibernateEntities.Employee;
 
 @Path("/")
 public class TestRest {
