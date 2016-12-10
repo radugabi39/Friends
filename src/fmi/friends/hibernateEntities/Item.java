@@ -1,6 +1,7 @@
 package fmi.friends.hibernateEntities;
 
 import java.math.BigDecimal;
+import java.math.BigInteger;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -30,6 +31,8 @@ public class Item {
 	private Date creationDate;
 
 	private String avatarURL;
+	
+	private Integer stock;
 
 	private Set<Orders> orders = new HashSet<Orders>(0);
 
@@ -113,5 +116,13 @@ public class Item {
 	public void setOrders(Set<Orders> orders) {
 		this.orders = orders;
 	}
-
+	
+	@Column(name = "STOCK", length = 100)
+	public Integer getStock() {
+		return stock;
+	}
+	
+	public void setStock(Integer stock) {
+		this.stock = stock;
+	}
 }
