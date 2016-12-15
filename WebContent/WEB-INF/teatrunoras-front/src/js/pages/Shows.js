@@ -1,29 +1,18 @@
 import React from "react"
 import { connect } from "react-redux"
 
-import { fetchTweets } from "../actions/tweetsActions"
-
 @connect((store) => {
   return {
-    tweets: store.tweets.tweets,
+    shows: store.shows.shows,
   };
 })
 export default class Shows extends React.Component {
-  fetchTweets() {
-    this.props.dispatch(fetchTweets())
-  }
-
   render() {
-    const { tweets } = this.props;
-
-    if (!tweets.length) {
-      return <button onClick={this.fetchTweets.bind(this)}>load tweets</button>
-    }
-
-    const mappedTweets = tweets.map(tweet => <li>{tweet.text}</li>)
+    const { shows } = this.props;
+    const mappedShows = shows.map(show => <li>{show.name}</li>);
 
     return <div>
-      <ul>{mappedTweets}</ul>
+      <ul>{mappedShows}</ul>
     </div>
   }
 }
