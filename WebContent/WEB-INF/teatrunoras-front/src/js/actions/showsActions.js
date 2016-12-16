@@ -6,3 +6,10 @@ export function fetchShows() {
     });
   }
 }
+
+export function fetchSingleShow(id) {
+	return {
+		type: 'FETCH_SHOW',
+		payload: id
+	};
+}

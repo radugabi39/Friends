@@ -7,6 +7,7 @@ import Home from "./pages/Home";
 import Layout from "./pages/Layout";
 import Profile from "./pages/Profile";
 import Shows from "./pages/Shows";
+import Show from "./pages/Show.jsx";
 
 import store from "./store";
 
@@ -18,6 +19,7 @@ ReactDOM.render(
       <Route path="/" component={Layout}>
         <IndexRoute component={Home}></IndexRoute>
         <Route path="shows" name="shows" component={Shows}></Route>
+        <Route path="show/:id" name="show" component={Show}></Route>
         <Route path="profile" name="profile" component={Profile}></Route>
       </Route>
     </Router>
