@@ -14,6 +14,8 @@ import javax.persistence.SecondaryTables;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "ORDER_ITEM", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class OrderItem {
@@ -53,6 +55,7 @@ public class OrderItem {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ORDER_ID", nullable = false)
+	 @JsonBackReference
 	public Orders getOrder() {
 		return order;
 	}
@@ -63,6 +66,7 @@ public class OrderItem {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ITEM_ID", nullable = false)
+	 @JsonBackReference
 	public Item getItem() {
 		return item;
 	}

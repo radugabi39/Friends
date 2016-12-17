@@ -16,6 +16,8 @@ import javax.persistence.MapsId;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "COMMENT", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Comment {
@@ -74,6 +76,7 @@ public class Comment {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", nullable = false)
+	 @JsonBackReference
 	public User getUser() {
 		return user;
 	}
@@ -84,6 +87,7 @@ public class Comment {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "REVIEW_ID", nullable = false)
+	 @JsonBackReference
 	public Review getReview() {
 		return review;
 	}

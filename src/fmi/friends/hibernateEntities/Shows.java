@@ -18,6 +18,8 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "SHOWS", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
@@ -50,6 +52,7 @@ public class Shows {
 
 	public Shows() {
 		super();
+		this.reviews=null;
 	}
 
 	public Shows(int id, String name, Date creationDate, String description, Theater theater, Date startDate,
@@ -65,7 +68,7 @@ public class Shows {
 		this.avatarURL = avatarURL;
 		this.price = price;
 		this.genre = genre;
-		this.reviews = reviews;
+		this.reviews = null;
 	}
 
 	@Id
@@ -164,6 +167,7 @@ public class Shows {
 		this.genre = genre;
 	}
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "show")
+	@JsonIgnore
 	public Set<Review> getReviews() {
 		return reviews;
 	}
