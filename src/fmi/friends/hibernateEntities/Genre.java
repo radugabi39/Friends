@@ -1,6 +1,5 @@
 package fmi.friends.hibernateEntities;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -13,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name = "GENRE", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
@@ -58,6 +59,7 @@ public class Genre {
 	
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "genre")
+	 @JsonManagedReference
 	public Set<Shows> getShows() {
 		return shows;
 	}

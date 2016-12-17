@@ -20,4 +20,9 @@
     <res-type>javax.sql.DataSource</res-type>
     <res-auth>Container</res-auth>
   </resource-ref>
+  <param-name>jersey.config.server.provider.packages</param-name>
+<param-value>
+    com.jersey.jaxb,
+    com.fasterxml.jackson.jaxrs.json
+</param-value>
 </web-app>
