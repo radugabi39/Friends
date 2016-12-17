@@ -6,31 +6,25 @@ import { fetchShows } from "../actions/showsActions";
 import Show from '../components/Show.jsx';
 
 @connect((store) => {
-  console.log(store);
   return {
     shows: store.shows.shows,
   };
 })
 export default class Shows extends React.Component {
-  // fetchShows() {
-  //   this.props.dispatch(fetchShows());
-  // }
-
-  componentWillMount() {
+  componentDidMount() {
     this.props.dispatch(fetchShows());
   }
 
   render() {
     const { shows } = this.props;
 
-    // shows = this.fetchShows.bind(this);
-    console.log(shows);
-
-    // if (!shows.length) {
-      // return <button onClick={this.fetchShows.bind(this)}>load tweets</button>
-    // }
-
-    const mappedShows = shows.map(show => <Show id={show.id} name={show.name} description={show.description} />);
+    var mappedShows;
+    if (typeof shows.list === 'undefined') {
+      mappedShows = [];
+    }
+    else {
+      mappedShows = shows.list.map(show => <Show id={show.id} name={show.name} description={show.description} />);
+    }
 
     return (
       <div>
