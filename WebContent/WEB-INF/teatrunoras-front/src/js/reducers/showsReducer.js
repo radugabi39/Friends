@@ -1,26 +1,26 @@
 export default function reducer(state={
-    shows: [
-      {
-        id: 1,
-        name: "Moartea unui comis voiajor",
-        description: "Piesa cu un comis voiajor care se duce."
-      },
-      {
-        id: 2,
-        name: "Cafeneaua",
-        description: "Piesa cu Malaele, in care Malaele il joaca pe Malaele tanar, prezent si viitor."
-      },
-      {
-        id: 3,
-        name: "Omul perna",
-        description: "Perne si crime."
-      },
-    ],
+    shows: [],
+    fetching: false,
+    fetched: false,
+    error: null,
   }, action) {
 
     switch (action.type) {
       case "FETCH_SHOWS": {
-        return {...state};
+        return {...state, fetching: true};
+      }
+
+      case "FETCH_SHOWS_REJECTED": {
+        return {...state, fetching: false, error: action.payload}
+      }
+
+      case "FETCH_SHOWS_FULFILLED": {
+        return {
+          ...state,
+          fetching: false,
+          fetched: true,
+          shows: action.payload,
+        }
       }
 
       case "FETCH_SHOW": {
