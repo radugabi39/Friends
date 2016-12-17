@@ -1,3 +1,5 @@
 /WebContent/WEB-INF/teatrunoras-front/node_modules/*
-/target/*
-/target/
+/target
+.metadata
+.project
+.directory
