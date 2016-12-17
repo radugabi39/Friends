@@ -19,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "USER", uniqueConstraints = { @UniqueConstraint(columnNames = { "USERNAME","EMAIL","ID" }) })
 public class User {
@@ -87,8 +90,9 @@ public class User {
 		this.password = password;
 	}
 
-	@ManyToOne
+	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ROLE_ID", nullable = false)
+	 @JsonBackReference
 	public Role getRole() {
 		return role;
 	}
@@ -162,6 +166,7 @@ public class User {
 	}
 
 	@OneToMany(mappedBy = "user")
+	 @JsonManagedReference
 	public Set<Review> getReviews() {
 		return reviews;
 	}
@@ -171,6 +176,7 @@ public class User {
 	}
 
 	@OneToMany(mappedBy = "user")
+	 @JsonManagedReference
 	public Set<Comment> getComments() {
 		return comments;
 	}
@@ -181,6 +187,7 @@ public class User {
 
 	
 	@OneToMany(mappedBy = "user")
+	 @JsonManagedReference
 	public Set<Orders> getOrders() {
 		return orders;
 	}
@@ -206,6 +213,7 @@ public class User {
 	}
 
 	 @OneToMany(mappedBy = "user")
+	 @JsonManagedReference
 	 public Set<UserTitle> getUserTitles() {
 	 return userTitles;
 	 }

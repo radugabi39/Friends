@@ -6,4 +6,6 @@ public class GenericDAO {
 
 	
 		protected static SessionFactory sessionFactory = HibernateUtil.getSessionFactory();
+		
+		
 }

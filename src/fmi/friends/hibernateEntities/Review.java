@@ -19,6 +19,9 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "REVIEW", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Review {
@@ -96,6 +99,7 @@ public class Review {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "USER_ID", nullable = false)
+	@JsonBackReference
 	public User getUser() {
 		return user;
 	}
@@ -106,6 +110,7 @@ public class Review {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "SHOW_ID", nullable = false)
+	 @JsonBackReference
 	public Shows getShow() {
 		return show;
 	}
@@ -114,6 +119,7 @@ public class Review {
 		this.show = show;
 	}
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "review")
+	 @JsonManagedReference
 	public Set<Comment> getComments() {
 		return comments;
 	}

@@ -16,6 +16,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "ITEM", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Item {
@@ -109,6 +111,7 @@ public class Item {
 	}
 
 	@OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+	 @JsonManagedReference
 	public Set<Orders> getOrders() {
 		return orders;
 	}

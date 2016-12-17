@@ -4,6 +4,7 @@ import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -19,17 +20,27 @@ import fmi.friennds.restUtils.ResponseListWrapper;
 public class ShowsRest {
 	private static final long serialVersionUID = 1L;
 	private ShowsDAO showDAO=new ShowsDAO();
-	public final Logger logger = Logger.getLogger(TestRest.class);
+	public final Logger logger = Logger.getLogger(ShowsRest.class);
 	
 	@GET
 	@Path("/getAllShows")
-	@Produces({ MediaType.APPLICATION_JSON })
+	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
 	public ResponseListWrapper<Shows> getAllShows() {
 		ResponseListWrapper<Shows> toReturn= new ResponseListWrapper<Shows>();
-		toReturn.setList(showDAO.getShows());
+		toReturn.setList(showDAO.getAllShows());
 		
 		return toReturn;
+		
+	}
+	
+	@GET
+	@Path("/getShowById/{showId}")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Shows getShowById(@PathParam("showId") int showId) {
+		
+		return showDAO.getShow(showId);
 		
 	}
 }

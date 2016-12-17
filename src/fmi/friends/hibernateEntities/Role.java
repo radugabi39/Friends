@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+
 @Entity
 @Table(name = "ROLE", uniqueConstraints = { @UniqueConstraint(columnNames = { "ID" }) })
 public class Role {
@@ -59,6 +61,7 @@ public class Role {
 	}
 
 	@OneToMany(mappedBy="role")
+	 @JsonManagedReference
 	public Set<User> getUsers() {
 		return users;
 	}

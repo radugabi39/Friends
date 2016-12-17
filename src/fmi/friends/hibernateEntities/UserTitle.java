@@ -19,6 +19,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @Entity
 @Table(name = "USERTITLE", uniqueConstraints = { @UniqueConstraint(columnNames = { "TITLE_ID", "USER_ID"}) })
 public class UserTitle implements Serializable {
@@ -49,6 +51,7 @@ public class UserTitle implements Serializable {
 	}
 	@ManyToOne
 	@JoinColumn(name = "TITLE_ID", unique = true, nullable = false)
+	 @JsonBackReference
 	public Title getTitle() {
 		return title;
 	}
@@ -59,6 +62,7 @@ public class UserTitle implements Serializable {
 
 	@ManyToOne
 	@JoinColumn(name = "USER_ID", unique = true, nullable = false)
+	 @JsonBackReference
 	public User getUser() {
 		return user;
 	}
