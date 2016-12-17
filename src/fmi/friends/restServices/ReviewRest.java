@@ -25,12 +25,12 @@ public class ReviewRest {
 	@Path("/getReviewByShowId/{showId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseListWrapper<Review>  getReviewByShowId(@PathParam("showId") int showId) {
+	public Response  getReviewByShowId(@PathParam("showId") int showId) {
 		ResponseListWrapper<Review> toReturn= new ResponseListWrapper<Review>();
 		toReturn.setList( reviewDAO.getReviewByShowId(showId));
 		
-		return toReturn;
-		
+
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
 
 		
 	}
@@ -41,7 +41,7 @@ public class ReviewRest {
 	@Consumes(MediaType.APPLICATION_JSON)
 	public Response getReviewByShowId(ReviewSaveModel toSave) {
 		reviewDAO.saveReview(toSave);
-		return Response.status(200).build();
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();
 		
 
 		

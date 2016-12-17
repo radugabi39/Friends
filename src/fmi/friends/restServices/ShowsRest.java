@@ -26,21 +26,21 @@ public class ShowsRest {
 	@Path("/getAllShows")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public ResponseListWrapper<Shows> getAllShows() {
+	public Response getAllShows() {
 		ResponseListWrapper<Shows> toReturn= new ResponseListWrapper<Shows>();
 		toReturn.setList(showDAO.getAllShows());
 		
-		return toReturn;
-		
+	
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
 	}
 	
 	@GET
 	@Path("/getShowById/{showId}")
 	@Produces(MediaType.APPLICATION_JSON)
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Shows getShowById(@PathParam("showId") int showId) {
+	public Response getShowById(@PathParam("showId") int showId) {
 		
-		return showDAO.getShow(showId);
-		
+		Shows toReturn= showDAO.getShow(showId);
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
 	}
 }
