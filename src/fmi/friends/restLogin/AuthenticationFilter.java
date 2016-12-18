@@ -12,9 +12,9 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 import fmi.friends.restLogin.Secured;
 
-@Secured
 @Provider
 @Priority(Priorities.AUTHENTICATION)
+@Secured
 public class AuthenticationFilter implements ContainerRequestFilter {
 	@Override
     public void filter(ContainerRequestContext requestContext) throws IOException {
