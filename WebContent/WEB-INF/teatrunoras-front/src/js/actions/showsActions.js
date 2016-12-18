@@ -13,8 +13,13 @@ export function fetchShows() {
 }
 
 export function fetchSingleShow(id) {
-	return {
-		type: 'FETCH_SHOW',
-		payload: id
-	};
+  return function(dispatch) {
+    axios.get("http://localhost:8081/Friends/shows/getShowById/" + id)
+      .then((response) => {
+        dispatch({type: "FETCH_SINGLE_SHOW_FULFILLED", payload: response.data})
+      })
+      .catch((err) => {
+        dispatch({type: "FETCH_SINGLE_SHOW_REJECTED", payload: err})
+      })
+  }
 }

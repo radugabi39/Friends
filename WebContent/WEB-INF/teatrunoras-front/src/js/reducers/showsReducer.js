@@ -23,10 +23,21 @@ export default function reducer(state={
         }
       }
 
-      case "FETCH_SHOW": {
+      case "FETCH_SINGLE_SHOW": {
+        return {...state, fetching: true};
+      }
+
+      case "FETCH_SINGLE_SHOW_REJECTED": {
+        return {...state, fetching: false, error: action.payload}
+      }
+
+      case "FETCH_SINGLE_SHOW_FULFILLED": {
         return {
-          shows: state.shows.filter(show => show.id == action.payload)
-        };
+          ...state,
+          fetching: false,
+          fetched: true,
+          shows: action.payload,
+        }
       }
     }
 

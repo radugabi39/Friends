@@ -12,7 +12,6 @@ export default class Show extends React.Component {
   }
 
   render() {
-    console.log(this.props);
     return (
       <div>
         <Link to={"show/" + this.props.id}>
