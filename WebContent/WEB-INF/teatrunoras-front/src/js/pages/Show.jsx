@@ -3,6 +3,7 @@ import { connect } from "react-redux"
 
 import { fetchSingleShow } from "../actions/showsActions.js";
 import { fetchReviewsForShow } from "../actions/reviewsActions.js";
+import { postReview } from "../actions/reviewsActions.js";
 
 @connect((store) => {
   return {
@@ -21,7 +22,7 @@ export default class Shows extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(this.fetchShowAndReviews(this.props.params['id']));
-    // this.props.dispatch(fetchReviewsForShow(this.props.params['id']));
+    this.props.dispatch(postReview());
   }
 
   render() {
@@ -38,7 +39,6 @@ export default class Shows extends React.Component {
       mappedReviews = reviews.list.map(review => <li>{review.description}</li>);
     }
 
-    // return <div>123</div>;
     return (
       <div>
         <h3>{show.name}</h3>
@@ -52,6 +52,7 @@ export default class Shows extends React.Component {
           <h4>Reviews: </h4>
           <ul>{mappedReviews}</ul>
         </div>
+
       </div>
     );
   }
