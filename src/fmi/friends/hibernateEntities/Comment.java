@@ -87,7 +87,6 @@ public class Comment {
 
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "REVIEW_ID", nullable = false)
-	 @JsonBackReference
 	public Review getReview() {
 		return review;
 	}
