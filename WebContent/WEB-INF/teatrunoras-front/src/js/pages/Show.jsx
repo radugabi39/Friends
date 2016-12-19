@@ -22,14 +22,15 @@ export default class Shows extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(this.fetchShowAndReviews(this.props.params['id']));
-    this.props.dispatch(postReview());
+    // this.props.dispatch(postReview());
+  }
+
+  postReview(showId, description) {
+    this.props.dispatch(postReview(showId, description)); 
   }
 
   render() {
     const { show, reviews } = this.props;
-    console.log(this.props);
-    console.log(show);
-    console.log(reviews.list);
 
     var mappedReviews;
     if (typeof reviews.list === 'undefined') {
@@ -53,6 +54,9 @@ export default class Shows extends React.Component {
           <ul>{mappedReviews}</ul>
         </div>
 
+        <textarea className="form-control"></textarea>
+
+        <button className="btn btn-primary" onClick={this.postReview.bind(this, this.props.params['id'], 'This is AMAZING?!!?!?')}>Post Review</button>
       </div>
     );
   }
