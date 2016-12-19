@@ -1,5 +1,6 @@
 package fmi.friends.dao;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,7 @@ import org.hibernate.Transaction;
 import fmi.friends.hibernateEntities.Review;
 import fmi.friends.hibernateEntities.Shows;
 import fmi.friends.hibernateEntities.User;
+import fmi.friends.models.ReviewRatingModel;
 import fmi.friends.models.ReviewSaveModel;
 
 public class ReviewDAO extends GenericDAO {
@@ -39,7 +41,19 @@ public class ReviewDAO extends GenericDAO {
 		toPersist.setUser(user);
 		session.save(toPersist);
 		tx.commit();
-		
+
+	}
+	
+	public void updateRating(ReviewRatingModel obj){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		Review toUpdate=session.get(Review.class, obj.getReviewId());
+		Integer currentNoVotes = toUpdate.getNoVotes()==null ? 1:toUpdate.getNoVotes()+1;
+		BigDecimal currentRating =toUpdate.getRating()==null ? obj.getRating():obj.getRating().add(toUpdate.getRating().multiply(new BigDecimal(toUpdate.getNoVotes())));
+		toUpdate.setNoVotes(currentNoVotes);
+		toUpdate.setRating(currentRating.divide(new BigDecimal(currentNoVotes)));
+		session.save(toUpdate);
+		tx.commit();
 
 	}
 }

@@ -13,6 +13,7 @@ import org.jboss.logging.Logger;
 
 import fmi.friends.dao.ReviewDAO;
 import fmi.friends.hibernateEntities.Review;
+import fmi.friends.models.ReviewRatingModel;
 import fmi.friends.models.ReviewSaveModel;
 import fmi.friennds.restUtils.ResponseListWrapper;
 @Path("/review")
@@ -42,8 +43,17 @@ public class ReviewRest {
 	public Response getReviewByShowId(ReviewSaveModel toSave) {
 		reviewDAO.saveReview(toSave);
 		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();
-		
 
-		
+	}
+	
+	
+	@POST
+	@Path("/updateRating")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response updateRating(ReviewRatingModel toUpdate) {
+		reviewDAO.updateRating(toUpdate);
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").build();
+
 	}
 }

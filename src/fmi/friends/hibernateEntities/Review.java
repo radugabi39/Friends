@@ -34,7 +34,9 @@ public class Review {
 	private String description;
 
 	private BigDecimal rating;
-
+	
+	private Integer noVotes;
+	
 	private Date creationDate;
 
 	private Shows show;
@@ -48,7 +50,7 @@ public class Review {
 	}
 
 	public Review(int id, User user, String description, BigDecimal rating, Date creationDate, Shows show,
-			Set<Comment> comments) {
+			Set<Comment> comments,Integer noVotes) {
 		super();
 		this.id = id;
 		this.user = user;
@@ -57,6 +59,7 @@ public class Review {
 		this.creationDate = creationDate;
 		this.show = show;
 		this.comments = comments;
+		this.noVotes = noVotes;
 	}
 
 	@Id
@@ -127,6 +130,15 @@ public class Review {
 
 	public void setComments(Set<Comment> comments) {
 		this.comments = comments;
+	}
+	
+	@Column(name = "NO_VOTES")
+	public Integer getNoVotes() {
+		return noVotes;
+	}
+
+	public void setNoVotes(Integer noVotes) {
+		this.noVotes = noVotes;
 	}
 
 
