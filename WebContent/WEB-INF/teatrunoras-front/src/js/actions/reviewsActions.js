@@ -30,26 +30,10 @@ export function postReview(showId, description) {
 			})
 			.then(function (response) {
 			  console.log(response);
+			  dispatch({type: "POST_REVIEW_FULFILLED", payload: response.config.data});
 			})
 		  .catch((err) => {
 		    dispatch({type: "POST_REVIEW_REJECTED", payload: err})
 		  })
 	}
 }
-
-// export function postReview() {
-// 	return function(dispatch) {
-// 		request
-// 		  .post("http://localhost:8081/Friends/review/saveReview")
-// 		  .send({
-// 		  	showId: 1,
-// 				userId: 1,
-// 				description: 'Review NOU 1'
-// 		  })
-// 		  .set('ACCEPT', 'application/json')
-// 		  .set('ACCESS-CONTROL-ALLOW-ORIGIN', '*')
-// 		  .end(function(err, res){
-// 		    // Calling the end function will send the request
-// 		  });
-// 	}
-// }

@@ -1,3 +1,5 @@
+var _ = require('lodash');
+
 export default function reducer(state={
     reviews: [],
     fetching: false,
@@ -20,6 +22,20 @@ export default function reducer(state={
           fetching: false,
           fetched: true,
           reviews: action.payload,
+        }
+      }
+
+      case "POST_REVIEW_FULFILLED": {
+        var obj = JSON.parse(action.payload);
+
+        var newReviews = [...state.reviews.list];
+        newReviews.push({
+          description: obj.description
+        });
+        var newState = _.assign({}, state, {reviews: {list: newReviews}});
+
+        return {
+          ...newState
         }
       }
     }

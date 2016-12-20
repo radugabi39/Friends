@@ -32,12 +32,7 @@ export default class Shows extends React.Component {
 
   componentDidMount() {
     this.props.dispatch(this.fetchShowAndReviews(this.props.params['id']));
-    // this.props.dispatch(postReview());
   }
-
-  // postReview(showId, description) {
-  //   this.props.dispatch(postReview(showId, description)); 
-  // }
 
   handleChange(event) {
     this.setState({value: event.target.value});
@@ -46,6 +41,7 @@ export default class Shows extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     this.props.dispatch(postReview(this.props.params['id'], this.state.value));
+    this.setState({value: ''});
   }
 
   render() {
