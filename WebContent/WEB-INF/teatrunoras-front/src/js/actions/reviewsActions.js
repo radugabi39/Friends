@@ -13,7 +13,6 @@ export function fetchReviewsForShow(id) {
   }
 }
 
-// Post Review with axios TO LOOK INTO if I decide to actually use it instead of superagent.
 export function postReview(showId, description) {
 	return function(dispatch) {
 		axios.post("http://localhost:8081/Friends/review/saveReview", 
@@ -29,11 +28,32 @@ export function postReview(showId, description) {
 				}
 			})
 			.then(function (response) {
-			  console.log(response);
 			  dispatch({type: "POST_REVIEW_FULFILLED", payload: response.config.data});
 			})
 		  .catch((err) => {
 		    dispatch({type: "POST_REVIEW_REJECTED", payload: err})
+		  })
+	}
+}
+
+export function postRating(reviewId, rating) {
+	return function(dispatch) {
+		axios.post("http://localhost:8081/Friends/review/updateRating", 
+			{
+				"reviewId": reviewId,
+				"rating": rating
+			}, 
+			{
+				headers: {
+					"Content-Type": "application/json",
+					"Access-Control-Allow-Origin": "*"
+				}
+			})
+			.then(function (response) {
+			  dispatch({type: "POST_RATING_FULFILLED", payload: response.config.data});
+			})
+		  .catch((err) => {
+		    dispatch({type: "POST_RATING_REJECTED", payload: err})
 		  })
 	}
 }

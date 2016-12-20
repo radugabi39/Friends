@@ -4,6 +4,7 @@ import { connect } from "react-redux"
 import { fetchSingleShow } from "../actions/showsActions.js";
 import { fetchReviewsForShow } from "../actions/reviewsActions.js";
 import { postReview } from "../actions/reviewsActions.js";
+import { postRating } from "../actions/reviewsActions.js";
 
 @connect((store) => {
   return {
@@ -16,11 +17,14 @@ export default class Shows extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      value: ''
+      value: '',
+      selectValue: '1'
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleSelectChange = this.handleSelectChange.bind(this);
+    this.handleSelectSubmit = this.handleSelectSubmit.bind(this);
   }
 
   fetchShowAndReviews(id) {
@@ -44,6 +48,18 @@ export default class Shows extends React.Component {
     this.setState({value: ''});
   }
 
+  handleSelectChange(event) {
+    console.log('ALOOOAHAHHAHAHA');
+    this.setState({selectValue: event.target.value});
+  }
+
+  handleSelectSubmit(event) {
+    console.log('POST PLEASE?');
+    event.preventDefault();
+    this.props.dispatch(postRating(1, this.state.selectValue));
+    this.setState({value: ''});
+  }
+
   render() {
     const { show, reviews } = this.props;
 
@@ -52,7 +68,30 @@ export default class Shows extends React.Component {
       mappedReviews = [];
     }
     else {
-      mappedReviews = reviews.list.map(review => <li>{review.description}</li>);
+      mappedReviews = reviews.list.map(review => 
+        <li>
+          <div>
+            <h5>Review with rating: {review.rating}</h5>
+
+            <form id={'form-review' + review.id} handleSelectSubmit={this.handleSubmit}>
+              <label>
+                Pick rating:
+                <select className="form-control" value={this.state.selectValue} onChange={this.handleSelectChange}>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                </select>
+              </label>
+              <input className="btn btn-primary" type="submit" value="Vote" />
+            </form>
+
+            <div>
+              {review.description}
+            </div>
+          </div>
+        </li>);
     }
 
     return (
