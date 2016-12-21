@@ -18,7 +18,7 @@ export default class Shows extends React.Component {
     super(props);
     this.state = {
       value: '',
-      selectValue: '1'
+      selectValue: 1
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -49,14 +49,12 @@ export default class Shows extends React.Component {
   }
 
   handleSelectChange(event) {
-    console.log('ALOOOAHAHHAHAHA');
     this.setState({selectValue: event.target.value});
   }
 
   handleSelectSubmit(event) {
-    console.log('POST PLEASE?');
     event.preventDefault();
-    this.props.dispatch(postRating(1, this.state.selectValue));
+    this.props.dispatch(postRating(54, 1));
     this.setState({value: ''});
   }
 
@@ -73,7 +71,7 @@ export default class Shows extends React.Component {
           <div>
             <h5>Review with rating: {review.rating}</h5>
 
-            <form id={'form-review' + review.id} handleSelectSubmit={this.handleSubmit}>
+            <form id={'form-review' + review.id} onSubmit={this.handleSelectSubmit}>
               <label>
                 Pick rating:
                 <select className="form-control" value={this.state.selectValue} onChange={this.handleSelectChange}>
