@@ -4,11 +4,6 @@ import { IndexLink, Link } from "react-router";
 export default class Show extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {
-      id: '',
-      name: '',
-      description: ''
-    };
   }
 
   render() {
