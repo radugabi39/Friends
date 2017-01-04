@@ -6,8 +6,6 @@ import { fetchReviewsForShow } from "../actions/reviewsActions.js";
 import { postReview } from "../actions/reviewsActions.js";
 import { postRating } from "../actions/reviewsActions.js";
 
-import Review from '../components/Review.jsx';
-
 @connect((store) => {
   return {
     show: store.shows.shows,
@@ -20,11 +18,11 @@ export default class Shows extends React.Component {
     super(props);
     this.state = {
       value: '',
+      selectValues: [],
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleSelectSubmit = this.handleSelectSubmit.bind(this);
   }
 
   fetchShowAndReviews(id) {
@@ -48,9 +46,8 @@ export default class Shows extends React.Component {
     this.setState({value: ''});
   }
 
-  handleSelectSubmit(reviewId, selectValue) {
-    this.props.dispatch(postRating(reviewId, selectValue));
-    event.preventDefault();
+  postRatingForReview(reviewId, rating) {
+    return this.props.dispatch(postRating(reviewId, rating)); 
   }
 
   render() {
@@ -62,13 +59,24 @@ export default class Shows extends React.Component {
     }
     else {
       mappedReviews = reviews.list.map(review => 
-        <Review 
-          key={review.id}
-          id={review.id}
-          rating={review.rating}
-          description={review.description}
-          onSubmit={(selectValue) => this.handleSelectSubmit(review.id, selectValue)}
-        />);
+        <li key={review.id}>
+          <div>
+            <h5>Review with RATING ({review.rating}) and ID ({review.id})</h5>
+
+            <div>
+              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 1)}>1</span>|
+              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 2)}>2</span>|
+              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 3)}>3</span>|
+              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 4)}>4</span>|
+              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 5)}>5</span>
+            </div>
+
+            <div>
+              {review.description}
+            </div>
+          </div>
+        </li>  
+      );
     }
 
     return (
