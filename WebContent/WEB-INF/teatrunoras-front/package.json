@@ -18,6 +18,7 @@
     "lodash": "^4.17.2",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
+    "react-image-gallery": "^0.7.10",
     "react-redux": "^4.4.6",
     "react-router": "^1.0.3",
     "redux": "^3.6.0",
@@ -28,7 +29,10 @@
     "webpack": "^1.12.9",
     "webpack-dev-server": "^1.14.1"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "css-loader": "^0.26.1",
+    "style-loader": "^0.13.1"
+  },
   "scripts": {
     "dev": "webpack-dev-server --content-base src --inline --hot"
   },

@@ -11,6 +11,8 @@ import Show from "./pages/Show.jsx";
 
 import store from "./store";
 
+import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
+
 const app = document.getElementById('app');
 
 ReactDOM.render(
@@ -23,5 +25,5 @@ ReactDOM.render(
         <Route path="profile" name="profile" component={Profile}></Route>
       </Route>
     </Router>
-    </Provider>,
+  </Provider>,
 app);
