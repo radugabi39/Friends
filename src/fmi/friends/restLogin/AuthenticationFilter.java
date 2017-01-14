@@ -1,36 +1,41 @@
 package fmi.friends.restLogin;
 
 import java.io.IOException;
-import java.lang.annotation.*;
+
 import javax.annotation.Priority;
 import javax.ws.rs.NotAuthorizedException;
 import javax.ws.rs.Priorities;
 import javax.ws.rs.container.ContainerRequestContext;
 import javax.ws.rs.container.ContainerRequestFilter;
 import javax.ws.rs.core.HttpHeaders;
+import javax.ws.rs.core.MultivaluedMap;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.ext.Provider;
 
+import java.util.List;
 import fmi.friends.dao.UserDAO;
-import fmi.friends.restLogin.Secured;
 
 @Provider
 @Priority(Priorities.AUTHENTICATION)
-// @Secured
+
 public class AuthenticationFilter implements ContainerRequestFilter {
 	UserDAO userDAO = new UserDAO();
 	final String urlLogin = "authentication/login";
 
 	public void filter(ContainerRequestContext requestContext) throws IOException {
-		// if(requestContext.get)
+
+	       MultivaluedMap<String, String> headers = requestContext.getHeaders();
+          
+
+          final List<String> authorization = headers.get("Authorization");
 		if (requestContext.getUriInfo().getRequestUri() != null
 				&& requestContext.getUriInfo().getRequestUri().getPath().indexOf(urlLogin) == -1) {
-			String authorizationHeader = requestContext.getHeaderString(HttpHeaders.AUTHORIZATION);
-			if (authorizationHeader == null || !authorizationHeader.startsWith("Bearer ")) {
+
+			if (authorization == null ) {
 				throw new NotAuthorizedException("Authorization header must be provided");
 			}
 
-			String token = authorizationHeader.substring("Bearer".length()).trim();
+			String token = authorization.get(0);
 
 			try {
 				validateToken(token);
