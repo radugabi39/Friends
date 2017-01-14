@@ -20,7 +20,12 @@ public class ReviewDAO extends GenericDAO {
 	
 	public List<Review> getReviewByShowId(int id){
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tx = session.beginTransaction();
+		Transaction tx=null;
+		if(session.getTransaction()!=null && session.getTransaction().isActive()){
+			tx=	session.getTransaction();
+		}else{
+			tx=session.beginTransaction();
+		}
 		EntityManager em=session.getEntityManagerFactory().createEntityManager();
 		Query q=em.createQuery("SELECT rev from Shows s "
 							+ "left join s.reviews rev where s.id=:id ").setParameter("id", id);
@@ -32,7 +37,12 @@ public class ReviewDAO extends GenericDAO {
 	
 	public void saveReview(ReviewSaveModel obj){
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tx = session.beginTransaction();
+		Transaction tx=null;
+		if(session.getTransaction()!=null && session.getTransaction().isActive()){
+			tx=	session.getTransaction();
+		}else{
+			tx=session.beginTransaction();
+		}
 		Shows show=session.get(Shows.class, obj.getShowId());
 		User user=session.get(User.class, obj.getUserId());
 		Review toPersist= new Review();
@@ -46,7 +56,12 @@ public class ReviewDAO extends GenericDAO {
 	
 	public void updateRating(ReviewRatingModel obj){
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tx = session.beginTransaction();
+		Transaction tx=null;
+		if(session.getTransaction()!=null && session.getTransaction().isActive()){
+			tx=	session.getTransaction();
+		}else{
+			tx=session.beginTransaction();
+		}
 		Review toUpdate=session.get(Review.class, obj.getReviewId());
 		Integer currentNoVotes = toUpdate.getNoVotes()==null ? 1:toUpdate.getNoVotes()+1;
 		BigDecimal currentRating =toUpdate.getRating()==null ? obj.getRating():obj.getRating().add(toUpdate.getRating().multiply(new BigDecimal(toUpdate.getNoVotes())));

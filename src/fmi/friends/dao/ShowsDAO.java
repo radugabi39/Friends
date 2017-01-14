@@ -14,7 +14,12 @@ import fmi.friends.hibernateEntities.Shows;
 public class ShowsDAO extends GenericDAO {
 	public List<Shows> getAllShows() {
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tx = session.beginTransaction();
+		Transaction tx=null;
+		if(session.getTransaction()!=null && session.getTransaction().isActive()){
+			tx=	session.getTransaction();
+		}else{
+			tx=session.beginTransaction();
+		}
 		EntityManager em = session.getEntityManagerFactory().createEntityManager();
 		Query q = em.createQuery("SELECT s from Shows s order by s.creationDate ");
 		List<Shows> toReturn = q.getResultList();
@@ -24,7 +29,12 @@ public class ShowsDAO extends GenericDAO {
 
 	public Shows getShow(int id){
 		Session session = sessionFactory.getCurrentSession();
-		Transaction tx = session.beginTransaction();
+		Transaction tx=null;
+		if(session.getTransaction()!=null && session.getTransaction().isActive()){
+			tx=	session.getTransaction();
+		}else{
+			tx=session.beginTransaction();
+		}
 		EntityManager em=session.getEntityManagerFactory().createEntityManager();
 		Query q=em.createQuery("SELECT s from Shows s where s.id=:id ").setParameter("id", id);
 		List<Shows> toReturn= q.getResultList();

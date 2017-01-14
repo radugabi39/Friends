@@ -33,6 +33,8 @@ public class HibernateUtil
             configuration.addAnnotatedClass(fmi.friends.hibernateEntities.Title.class);
             configuration.addAnnotatedClass(fmi.friends.hibernateEntities.User.class);
             configuration.addAnnotatedClass(fmi.friends.hibernateEntities.UserTitle.class);
+            configuration.addAnnotatedClass(fmi.friends.hibernateEntities.Token.class);
+
             sessionFactory = configuration.buildSessionFactory(serviceRegistry);
          }
          return sessionFactory;
