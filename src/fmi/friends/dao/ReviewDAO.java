@@ -1,6 +1,7 @@
 package fmi.friends.dao;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -66,7 +67,7 @@ public class ReviewDAO extends GenericDAO {
 		Integer currentNoVotes = toUpdate.getNoVotes()==null ? 1:toUpdate.getNoVotes()+1;
 		BigDecimal currentRating =toUpdate.getRating()==null ? obj.getRating():obj.getRating().add(toUpdate.getRating().multiply(new BigDecimal(toUpdate.getNoVotes())));
 		toUpdate.setNoVotes(currentNoVotes);
-		toUpdate.setRating(currentRating.divide(new BigDecimal(currentNoVotes)));
+		toUpdate.setRating(currentRating.divide(new BigDecimal(currentNoVotes),2, RoundingMode.HALF_UP));
 		session.save(toUpdate);
 		tx.commit();
 

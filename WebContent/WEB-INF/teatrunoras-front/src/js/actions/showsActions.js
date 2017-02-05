@@ -2,7 +2,12 @@ import axios from "axios";
 
 export function fetchShows() {
   return function(dispatch) {
-    axios.get("http://localhost:8081/Friends/shows/getAllShows")
+
+
+    axios.get("http://localhost:8081/Friends/shows/getAllShows", 
+      
+      {headers: {'Authorization': 'hikqbm3nhfsqnke9il0earr513'}}
+      )
       .then((response) => {
         dispatch({type: "FETCH_SHOWS_FULFILLED", payload: response.data})
       })
@@ -14,7 +19,9 @@ export function fetchShows() {
 
 export function fetchSingleShow(id) {
   return function(dispatch) {
-    axios.get("http://localhost:8081/Friends/shows/getShowById/" + id)
+    axios.get("http://localhost:8081/Friends/shows/getShowById/" + id, 
+      
+      {headers: {'Authorization': 'hikqbm3nhfsqnke9il0earr513'}})
       .then((response) => {
         dispatch({type: "FETCH_SINGLE_SHOW_FULFILLED", payload: response.data})
       })

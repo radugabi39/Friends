@@ -3,7 +3,9 @@ import request from "superagent";
 
 export function fetchReviewsForShow(id) {
   return function(dispatch) {
-    axios.get("http://localhost:8081/Friends/review/getReviewByShowId/" + id)
+    axios.get("http://localhost:8081/Friends/review/getReviewByShowId/" + id, 
+      
+      {headers: {'Authorization': 'hikqbm3nhfsqnke9il0earr513'}})
       .then((response) => {
         dispatch({type: "FETCH_REVIEWS_FULFILLED", payload: response.data})
       })
@@ -24,7 +26,8 @@ export function postReview(showId, description) {
 			{
 				headers: {
 					"Content-Type": "application/json",
-					"Access-Control-Allow-Origin": "*"
+					"Access-Control-Allow-Origin": "*",
+					'Authorization': 'hikqbm3nhfsqnke9il0earr513'
 				}
 			})
 			.then(function (response) {
@@ -46,7 +49,8 @@ export function postRating(reviewId, rating) {
 			{
 				headers: {
 					"Content-Type": "application/json",
-					"Access-Control-Allow-Origin": "*"
+					"Access-Control-Allow-Origin": "*",
+					'Authorization': 'hikqbm3nhfsqnke9il0earr513'
 				}
 			})
 			.then(function (response) {
