@@ -19,6 +19,7 @@
     "jwt-decode": "^2.1.0",
     "lodash": "^4.17.2",
     "react": "^0.14.6",
+    "react-cookie": "^1.0.4",
     "react-dom": "^0.14.6",
     "react-image-gallery": "^0.7.10",
     "react-redux": "^4.4.6",

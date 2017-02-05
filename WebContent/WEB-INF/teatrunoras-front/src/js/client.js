@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom";
 import { Router, Route, IndexRoute, hashHistory } from "react-router";
 import { Provider } from "react-redux";
+import cookie from 'react-cookie';
+import setAuthorizationToken from './utils/setAuthorizationToken';
 
 import Home from "./pages/Home";
 import Layout from "./pages/Layout";
@@ -14,6 +16,10 @@ import store from "./store";
 import "../../node_modules/react-image-gallery/styles/css/image-gallery.css";
 
 const app = document.getElementById('app');
+
+if (cookie.load('loginToken')) {
+  setAuthorizationToken(cookie.load('loginToken'));
+}
 
 ReactDOM.render(
   <Provider store={store}>
