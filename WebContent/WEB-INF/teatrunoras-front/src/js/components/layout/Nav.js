@@ -1,5 +1,15 @@
 import React from "react";
 import { IndexLink, Link } from "react-router";
+import { connect } from "react-redux"
+import cookie from 'react-cookie';
+import { setCurrentUser } from '../../actions/authActions';
+
+@connect((store) => {
+  return {
+    user: store.auth.user,
+    userAuthenticated: store.auth.isAuthenticated
+  };
+})
 
 export default class Nav extends React.Component {
   constructor() {
@@ -7,6 +17,8 @@ export default class Nav extends React.Component {
     this.state = {
       collapsed: true,
     };
+
+    this.handleLogout = this.handleLogout.bind(this);
   }
 
   toggleCollapse() {
@@ -14,10 +26,32 @@ export default class Nav extends React.Component {
     this.setState({collapsed});
   }
 
+  handleLogout(event) {
+    event.preventDefault();
+    cookie.remove('loginToken', []);
+    cookie.remove('loginUsername', []);
+    this.props.dispatch(setCurrentUser(''));
+    // this.history.pushState(null, '/');
+    window.location.href = "http://localhost:8080/";
+  }
+
   render() {
+    console.log(this);
     const { location } = this.props;
     const { collapsed } = this.state;
     const navClass = collapsed ? "collapse" : "";
+    var loginLi = (
+      <li activeClassName="active">
+        <Link to="profile" onClick={this.toggleCollapse.bind(this)}>Login</Link>
+      </li>
+    );
+    if (cookie.load('loginUsername')) {
+      loginLi = (
+        <li>
+          <Link to="/" onClick={this.handleLogout}>Logout</Link>
+        </li>)
+      ;
+    }
 
     return (
       <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
@@ -38,9 +72,7 @@ export default class Nav extends React.Component {
               <li activeClassName="active">
                 <Link to="shows" onClick={this.toggleCollapse.bind(this)}>Shows</Link>
               </li>
-              <li activeClassName="active">
-                <Link to="profile" onClick={this.toggleCollapse.bind(this)}>Profile</Link>
-              </li>
+              {loginLi}
             </ul>
           </div>
         </div>
@@ -48,3 +80,4 @@ export default class Nav extends React.Component {
     );
   }
 }
+

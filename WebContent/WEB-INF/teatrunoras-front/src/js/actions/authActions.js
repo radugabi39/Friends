@@ -1,8 +1,8 @@
 import axios from 'axios';
 import setAuthorizationToken from '../utils/setAuthorizationToken';
-// import jwtDecode from 'jwt-decode';
 import { SET_CURRENT_USER } from './types';
 import cookie from 'react-cookie';
+import { browserHistory } from 'react-router'
 
 export function setCurrentUser(user) {
   return {
@@ -20,16 +20,22 @@ export function logout() {
 }
 
 export function login(data) {
+  const username = data.identifier;
+  const password = data.password;
   return dispatch => {
-    var data={"password":"test","username":"testerUsername"}
-    var auth={ 'Authorization': 'tokenAxis' } ;
+    var data={"password": password,"username": username}
     return axios.post('http://localhost:8081/Friends/authentication/login', data)
     .then(res => {
       const token = res.data;
-      // localStorage.setItem('jwtToken', token);
-      cookie.save('loginToken', token, { path: '/' });
+      const expireDate = new Date();
+      expireDate.setMinutes(expireDate.getMinutes() + 30);
+      setTimeout(function(){alert("Session expired!")}, expireDate);
+      cookie.save('loginToken', token, { path: '/', expires: expireDate });
+      cookie.save('loginUsername', username, { path: '/', expires: expireDate});
       setAuthorizationToken(token);
-      // dispatch(setCurrentUser(jwtDecode(token)));
+      dispatch(setCurrentUser(cookie.load('loginUsername')));
+      window.location.href = "http://localhost:8080/";
+      // browserHistory.push('/');
     });
   }
 }
