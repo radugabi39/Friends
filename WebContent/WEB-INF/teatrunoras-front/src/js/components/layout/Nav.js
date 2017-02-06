@@ -31,12 +31,10 @@ export default class Nav extends React.Component {
     cookie.remove('loginToken', []);
     cookie.remove('loginUsername', []);
     this.props.dispatch(setCurrentUser(''));
-    // this.history.pushState(null, '/');
     window.location.href = "http://localhost:8080/";
   }
 
   render() {
-    console.log(this);
     const { location } = this.props;
     const { collapsed } = this.state;
     const navClass = collapsed ? "collapse" : "";

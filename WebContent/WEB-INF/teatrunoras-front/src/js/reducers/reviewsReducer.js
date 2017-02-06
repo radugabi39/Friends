@@ -38,6 +38,26 @@ export default function reducer(state={
           ...newState
         }
       }
+
+      case "POST_RATING_FULFILLED": {
+        let obj = JSON.parse(action.payload);
+
+        let newReviews = _.assign({}, state.reviews);
+        for(var i=0; i < newReviews.list.length; i++) {
+          if (newReviews.list[i].id === obj.reviewId) {
+            if (newReviews.list[i].rating === null) {
+              newReviews.list[i].rating = 0;
+            }
+            newReviews.list[i].rating = Math.round((newReviews.list[i].rating * newReviews.list[i].noVotes + obj.rating ) / (newReviews.list[i].noVotes + 1) * 100) / 100;
+            newReviews.list[i].noVotes ++;
+          }
+        }
+
+        let newState = _.assign({}, state);
+        newState.reviews = newReviews;
+
+        return {...newState}
+      }
     }
 
     return state;
