@@ -1,5 +1,6 @@
 /WebContent/WEB-INF/teatrunoras-front/node_modules/*
 /WebContent/WEB-INF/teatrunoras-front/npm-debug.log
+/WebContent/WEB-INF/teatrunoras-front/src/assets
 /target
 .metadata
 .project

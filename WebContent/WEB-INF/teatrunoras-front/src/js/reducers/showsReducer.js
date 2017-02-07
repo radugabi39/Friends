@@ -1,5 +1,7 @@
 export default function reducer(state={
     shows: [],
+    showsById: [],
+    showsByReviews: [],
     fetching: false,
     fetched: false,
     error: null,
@@ -37,6 +39,24 @@ export default function reducer(state={
           fetching: false,
           fetched: true,
           shows: action.payload,
+        }
+      }
+
+      case "FETCH_SHOWS_BY_ORDER_FULFILLED": {
+        return {
+          ...state,
+          fetching: false,
+          fetched: true,
+          showsById: action.payload,
+        }
+      }
+
+      case "FETCH_SHOWS_BY_REVIEWS_FULFILLED": {
+        return {
+          ...state,
+          fetching: false,
+          fetched: true,
+          showsByReviews: action.payload,
         }
       }
     }

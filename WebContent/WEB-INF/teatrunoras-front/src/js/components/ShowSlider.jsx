@@ -1,31 +1,41 @@
 import React from "react";
 import ImageGallery from 'react-image-gallery';
+import { connect } from "react-redux";
+import { fetchShowsByReviews } from "../actions/showsActions";
+
+@connect((store) => {
+  return {
+    showsByReviews: store.shows.showsByReviews,
+  };
+})
 
 export default class ShowSlider extends React.Component {
+  componentDidMount() {
+    this.props.dispatch(fetchShowsByReviews());
+  }
 
   handleImageLoad(event) {
-    console.log('Image loaded ', event.target)
+    // console.log('Image loaded ', event.target)
   }
 
   render() {
+    const { showsByReviews } = this.props;
 
-    const images = [
-      {
-        original: 'http://lorempixel.com/1000/600/nature/1/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/1/',
-        description: 'This is it.',
-      },
-      {
-        original: 'http://lorempixel.com/1000/600/nature/2/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/2/',
-        description: 'This is it.2',
-      },
-      {
-        original: 'http://lorempixel.com/1000/600/nature/3/',
-        thumbnail: 'http://lorempixel.com/250/150/nature/3/',
-        description: 'This is it.3',
+    var mappedShowsByReviews = [];
+    if (typeof showsByReviews.list === 'undefined') {
+      mappedShowsByReviews = [];
+    }
+    else {
+      console.log(showsByReviews);
+      for (var i=0; i < 4; i++) {
+        mappedShowsByReviews.push({
+          original: showsByReviews.list[i].avatarURL,
+          thumbnail: showsByReviews.list[i].avatarURL,
+          description: showsByReviews.list[i].name + '. ' + showsByReviews.list[i].description,
+        });
       }
-    ]
+    }
+    const images = mappedShowsByReviews;    
 
     return (
       <ImageGallery

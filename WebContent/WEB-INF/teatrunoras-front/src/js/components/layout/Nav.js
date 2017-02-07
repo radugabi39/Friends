@@ -31,7 +31,7 @@ export default class Nav extends React.Component {
     cookie.remove('loginToken', []);
     cookie.remove('loginUsername', []);
     this.props.dispatch(setCurrentUser(''));
-    window.location.href = "http://localhost:8080/";
+    window.location.href = "http://localhost:8080/#/profile";
   }
 
   render() {
