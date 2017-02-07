@@ -20,7 +20,6 @@ export default class Home extends React.Component {
 
   	var mappedShowsByDate = [];
     if (typeof showsByDate.list !== 'undefined') {
-      // mappedShowsByDate = showsByDate.list.map(show => <li>{show.name}</li>);
       for (var i=0; i < 6; i++) {
       	mappedShowsByDate.push(<li>{showsByDate.list[i].name}</li>)
       }

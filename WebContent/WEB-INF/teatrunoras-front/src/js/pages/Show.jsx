@@ -61,18 +61,33 @@ export default class Shows extends React.Component {
       mappedReviews = reviews.list.map(review => 
         <li key={review.id}>
           <div>
-            <h5>Review with RATING ({review.rating}) and ID ({review.id})</h5>
-
-            <div>
-              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 1)}>1</span>|
-              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 2)}>2</span>|
-              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 3)}>3</span>|
-              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 4)}>4</span>|
-              <span className="btn btn-primary" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 5)}>5</span>
-            </div>
-
             <div>
               {review.description}
+            </div>
+
+            <div className="ratingBarWrapper">
+              <div className="ratingBar">
+                <div className="ratingBarClickable">
+                  <span className="glyphicon glyphicon-star" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 5)}></span>
+                  <span className="glyphicon glyphicon-star" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 4)}></span>
+                  <span className="glyphicon glyphicon-star" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 3)}></span>
+                  <span className="glyphicon glyphicon-star" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 2)}></span>
+                  <span className="glyphicon glyphicon-star" onClick={(reviewId, rating) => this.postRatingForReview(review.id, 1)}></span>
+                </div>
+                <div className="ratingBarOverlay" style={{width: (review.rating / 5 * 100).toString() + '%'}}>
+                  <div className="ratingBarOverlayInner">
+                    <span className="glyphicon glyphicon-star"></span>
+                    <span className="glyphicon glyphicon-star"></span>
+                    <span className="glyphicon glyphicon-star"></span>
+                    <span className="glyphicon glyphicon-star"></span>
+                    <span className="glyphicon glyphicon-star"></span>
+                  </div>
+                </div>
+              </div> 
+              
+              <div className="noVotes">
+                {review.noVotes + ' voturi'} 
+              </div>
             </div>
           </div>
         </li>  
@@ -81,19 +96,21 @@ export default class Shows extends React.Component {
 
     return (
       <div className="single-show-container">
-        <h3>{show.name}</h3>
+        
+        <div className="page-header">
+          <h1>{show.name}</h1>
+        </div>
 
-        <div>
-          <h4>Description</h4>
+        <div className="well">
           {show.description}
         </div>
 
         <div>
-          <h4>Reviews: </h4>
-          <ul>{mappedReviews}</ul>
+          <h2>Reviews: </h2>
+          <ul className="reviews">{mappedReviews}</ul>
         </div>
 
-        <form onSubmit={this.handleSubmit} className="add-review-form">
+        <form onSubmit={this.handleSubmit} className="add-review-form well">
           <label>
             <p>Add Review:</p>
             <textarea className="form-control" value={this.state.value} onChange={this.handleChange} />
