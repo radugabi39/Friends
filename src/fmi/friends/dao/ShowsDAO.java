@@ -46,4 +46,36 @@ public class ShowsDAO extends GenericDAO {
 			return null;
 		}
 	}
+	
+	public List<Shows> getShowsOrderByCreationDate(){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx=null;
+		if(session.getTransaction()!=null && session.getTransaction().isActive()){
+			tx=	session.getTransaction();
+		}else{
+			tx=session.beginTransaction();
+		}
+		EntityManager em=session.getEntityManagerFactory().createEntityManager();
+		Query q = em.createQuery("SELECT s from Shows s order by s.creationDate desc");
+		List<Shows> toReturn = q.getResultList();
+		tx.commit();
+		return toReturn;
+	}
+	
+	public List<Shows> getShowsOrderByReviews(){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx=null;
+		if(session.getTransaction()!=null && session.getTransaction().isActive()){
+			tx=	session.getTransaction();
+		}else{
+			tx=session.beginTransaction();
+		}
+		EntityManager em=session.getEntityManagerFactory().createEntityManager();
+		Query q = em.createQuery("SELECT s from Shows s"
+				+ " left join s.reviews rev group by s.id order by count(rev) desc");
+		List<Shows> toReturn = q.getResultList();
+		tx.commit();
+		return toReturn;
+	}
+//	
 }

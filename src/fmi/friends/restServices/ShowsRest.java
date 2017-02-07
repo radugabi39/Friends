@@ -43,4 +43,28 @@ public class ShowsRest {
 		Shows toReturn= showDAO.getShow(showId);
 		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
 	}
+	
+	
+	@GET
+	@Path("/getShowsOrderByReviews")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getShowsOrderByReviews() {
+		ResponseListWrapper<Shows> toReturn= new ResponseListWrapper<Shows>();
+		toReturn.setList(showDAO.getShowsOrderByReviews());
+		
+	
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
+	}
+	@GET
+	@Path("/getShowsOrderByCreationDate")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getShowsOrderByCreationDate() {
+		ResponseListWrapper<Shows> toReturn= new ResponseListWrapper<Shows>();
+		toReturn.setList(showDAO.getShowsOrderByCreationDate());
+		
+	
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
+	}
 }

@@ -12,6 +12,9 @@ import org.hibernate.Transaction;
 
 import fmi.friends.hibernateEntities.Token;
 import fmi.friends.hibernateEntities.User;
+import fmi.friends.models.ItemUPModel;
+import fmi.friends.models.ReviewModelUPModel;
+import fmi.friends.models.UserProfileModel;
 
 
 
@@ -99,4 +102,44 @@ public class UserDAO  extends GenericDAO {
 			return true;
 		}
 	}
+	public Integer getUserByToken(String token){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		EntityManager em = session.getEntityManagerFactory().createEntityManager();
+		Query que= em.createQuery("SELECT t.userID from Token t where t.token=:token");
+				que.setParameter("token", token);
+
+	
+		Integer t= (Integer) que.getSingleResult();
+		tx.commit();
+		return t;
+	}
+	public UserProfileModel getUserProfile(int userId){
+		Session session = sessionFactory.getCurrentSession();
+		Transaction tx = session.beginTransaction();
+		EntityManager em = session.getEntityManagerFactory().createEntityManager();
+		Query q = em.createQuery("SELECT new fmi.friends.models.UserProfileModel(concat(u.lastName,' ',u.firstName),u.points)  from User u where u.id=:userId")
+				.setParameter("userId", userId);
+	
+		UserProfileModel usr= (UserProfileModel) q.getSingleResult();
+		q = em.createQuery("SELECT new fmi.friends.models.ReviewModelUPModel(rev.description,rev.rating,rev.noVotes)  from Review rev "
+				+ "inner join rev.user u where u.id=:userId")
+				.setParameter("userId", userId);
+		List<ReviewModelUPModel> r=  q.getResultList();
+		
+		q = em.createQuery("SELECT new fmi.friends.models.ItemUPModel(itm.name,itm.price,ord.creationDate)  from Orders ord "
+				+ "inner join ord.user u "
+				+ "inner join ord.item itm where u.id=:userId")
+				.setParameter("userId", userId);
+		List<ItemUPModel> i=  q.getResultList();
+		tx.commit();
+		if(usr!=null){
+			usr.setRevList(r);
+			usr.setItemList(i);
+			return usr;
+		}else{
+			return null;
+		}
+	}
+	
 }

@@ -64,6 +64,12 @@ public class ReviewDAO extends GenericDAO {
 			tx=session.beginTransaction();
 		}
 		Review toUpdate=session.get(Review.class, obj.getReviewId());
+		User u =toUpdate.getUser();
+		if(u.getPoints()!=null){
+			u.setPoints(u.getPoints()+obj.getRating().setScale(0,  RoundingMode.HALF_UP).intValue());
+		}else{
+			u.setPoints(obj.getRating().setScale(0,  RoundingMode.HALF_UP).intValue());
+		}
 		Integer currentNoVotes = toUpdate.getNoVotes()==null ? 1:toUpdate.getNoVotes()+1;
 		BigDecimal currentRating =toUpdate.getRating()==null ? obj.getRating():obj.getRating().add(toUpdate.getRating().multiply(new BigDecimal(toUpdate.getNoVotes())));
 		toUpdate.setNoVotes(currentNoVotes);

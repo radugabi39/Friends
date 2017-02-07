@@ -2,6 +2,7 @@ package fmi.friends.restServices;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
+import javax.ws.rs.HeaderParam;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -13,6 +14,7 @@ import org.jboss.logging.Logger;
 import fmi.friends.dao.ShowsDAO;
 import fmi.friends.dao.UserDAO;
 import fmi.friends.hibernateEntities.Shows;
+import fmi.friends.models.UserProfileModel;
 import fmi.friennds.restUtils.ResponseListWrapper;
 
 @Path("/user")
@@ -30,6 +32,18 @@ public class UserRest {
 
 		
 	
+		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
+	}
+	
+	@GET
+	@Path("/getUserProfile")
+	@Produces(MediaType.APPLICATION_JSON)
+	@Consumes(MediaType.APPLICATION_JSON)
+	public Response getUserProfile(@HeaderParam("Authorization") String token) {
+		
+		Integer userId=userDAO.getUserByToken(token);
+		UserProfileModel toReturn=userDAO.getUserProfile(userId);
+
 		return Response.status(200).header("Access-Control-Allow-Origin", "*").entity(toReturn).build();
 	}
 
