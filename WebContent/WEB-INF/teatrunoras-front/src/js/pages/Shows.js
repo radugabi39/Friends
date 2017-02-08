@@ -23,7 +23,7 @@ export default class Shows extends React.Component {
       mappedShows = [];
     }
     else {
-      mappedShows = shows.list.map(show => <Show key={show.id} id={show.id} name={show.name} description={show.description} />);
+      mappedShows = shows.list.map(show => <Show key={show.id} id={show.id} name={show.name} description={show.description} avatar={show.avatarURL} />);
     }
 
     return (

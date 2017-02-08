@@ -9,11 +9,17 @@ export default class Show extends React.Component {
   render() {
     return (
       <div>
-        <Link to={"show/" + this.props.id}>
-          <h3>{this.props.name}</h3>
-        </Link>
-
-        <div>{this.props.description}</div>
+        <li className="col-md-4 homeRecentShowsLi">
+          <div style={{backgroundImage: 'url(' + this.props.avatar + ')'}} className="homeRecentShowsLiContainer">
+            <div className="homeRecentShowsLink">
+              <div className="grayOverlay">
+                <Link to={"show/" + this.props.id}>
+                  {this.props.name}
+                </Link>
+              </div>
+            </div>
+          </div>
+        </li>
       </div>
     );
   }

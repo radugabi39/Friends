@@ -26,6 +26,31 @@ export default class Profile extends React.Component {
 							<div>
 		            {review.descrReview}
 		          </div>
+
+							<div className="ratingBarWrapperProfile">
+		            <div className="ratingBarProfile">
+			            <div className="ratingBarClickableProfile">
+	                  <span className="glyphicon glyphicon-star" ></span>
+	                  <span className="glyphicon glyphicon-star" ></span>
+	                  <span className="glyphicon glyphicon-star" ></span>
+	                  <span className="glyphicon glyphicon-star" ></span>
+	                  <span className="glyphicon glyphicon-star" ></span>
+	                </div>
+	                <div className="ratingBarOverlayProfile" style={{width: (4 / 5 * 100).toString() + '%'}}>
+	                  <div className="ratingBarOverlayInnerProfile">
+	                    <span className="glyphicon glyphicon-star"></span>
+	                    <span className="glyphicon glyphicon-star"></span>
+	                    <span className="glyphicon glyphicon-star"></span>
+	                    <span className="glyphicon glyphicon-star"></span>
+	                    <span className="glyphicon glyphicon-star"></span>
+	                  </div>
+	                </div>
+	              </div> 
+
+	              <div className="noVotesProfile">
+	                {'0 voturi (' + review.points + ' Puncte)'} 
+	              </div>
+            	</div>
 						</div>
 					</li>
 			);		
@@ -62,7 +87,7 @@ export default class Profile extends React.Component {
 
 	      <div>
 	      	<h2>Reviews</h2>
-	      	<ul>{reviewsList}</ul>
+	      	<ul className="profileReviews">{reviewsList}</ul>
 	      </div>
 
 	      <div>

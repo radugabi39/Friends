@@ -86,7 +86,7 @@ export default class Shows extends React.Component {
               </div> 
               
               <div className="noVotes">
-                {review.noVotes + ' voturi'} 
+                {review.noVotes ? review.noVotes + ' voturi' : '0 voturi'} 
               </div>
             </div>
           </div>
