@@ -39,13 +39,15 @@ export default class Home extends React.Component {
 
     return (
     	<div>
-	    	<h1>Home</h1>
+        <div className="page-header">
+          <h1>Acasa</h1>
+        </div>
 
-	    	<h2>Cele mai discutate spectacole</h2>
+	    	<h3>Cele mai discutate spectacole</h3>
   			<ShowSlider />  	
 
         <div className="container">
-    			<h2>Cele mai recente spectacole</h2>
+    			<h3>Cele mai recente spectacole</h3>
   	    	<ul className="row homeRecentShowsUl">{mappedShowsByDate}</ul>
         </div>
     	</div>

@@ -28,6 +28,10 @@ export default class Shows extends React.Component {
 
     return (
       <div>
+        <div className="page-header">
+          <h1>Spectacole</h1>
+        </div>
+        
         <ul>{mappedShows}</ul>
       </div>
     )

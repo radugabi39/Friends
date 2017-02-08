@@ -48,7 +48,7 @@ export default class Profile extends React.Component {
 	              </div> 
 
 	              <div className="noVotesProfile">
-	                {'0 voturi (' + review.points + ' Puncte)'} 
+	                {'0 voturi ('}{review.points ? review.points + ' Puncte acumulate)' : '0 Puncte acumulate)'} 
 	              </div>
             	</div>
 						</div>
@@ -86,12 +86,12 @@ export default class Profile extends React.Component {
 	      </div>
 
 	      <div>
-	      	<h2>Reviews</h2>
+	      	<h2>Recenzii</h2>
 	      	<ul className="profileReviews">{reviewsList}</ul>
 	      </div>
 
 	      <div>
-	      	<h2>Purchased Items</h2>
+	      	<h2>Comenzi</h2>
 	      	<ul>{itemsList}</ul>
 	      </div>
 

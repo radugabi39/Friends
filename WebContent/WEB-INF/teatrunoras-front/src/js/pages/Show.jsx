@@ -106,13 +106,13 @@ export default class Shows extends React.Component {
         </div>
 
         <div>
-          <h2>Reviews</h2>
+          <h2>Recenzii</h2>
           <ul className="reviews">{mappedReviews}</ul>
         </div>
 
         <form onSubmit={this.handleSubmit} className="add-review-form well">
           <label>
-            <p>Add Review:</p>
+            <p>Adauga Recenzie:</p>
             <textarea className="form-control" value={this.state.value} onChange={this.handleChange} />
           </label>
           <input className="btn btn-primary" type="submit" value="Submit Review" />
