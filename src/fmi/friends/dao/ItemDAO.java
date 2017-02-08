@@ -27,7 +27,7 @@ public class ItemDAO  extends GenericDAO  {
 		}	
 
 		EntityManager em = session.getEntityManagerFactory().createEntityManager();
-		Query q = em.createQuery("SELECT new fmi.friends.models.ItemModel(i.name,i.description,i.price,i.stock,i.avatarURL) from Item i");
+		Query q = em.createQuery("SELECT new fmi.friends.models.ItemModel(i.name,i.description,i.price,i.stock,i.avatarURL,i.id) from Item i");
 		List<ItemModel> toReturn = q.getResultList();
 		tx.commit();
 		return toReturn;
