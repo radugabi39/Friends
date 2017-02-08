@@ -1,0 +1,1 @@
+INSERT INTO `friendsdb`.`ITEM` (`ID`, `CREATIONDATE`, `DESCRIPTION`, `NAME`, `PRICE`, `STOCK`) VALUES ('1', '2017-02-08 10:54:16', 'Desc', 'Prima Oferta', '15', '5');

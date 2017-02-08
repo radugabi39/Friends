@@ -37,8 +37,14 @@ export default class Profile extends React.Component {
 					<li>
 						<div>
 							<div>
-		            ceva
-		          </div>
+				           {item.name}
+				         </div>
+							<div>
+				           {item.price} Puncte
+				         </div>
+							<div>
+				           {new Date(item.purchaseDate).toUTCString()}
+				         </div>
 						</div>
 					</li>
 			);		

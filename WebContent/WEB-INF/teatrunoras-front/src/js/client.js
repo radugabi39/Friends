@@ -11,6 +11,7 @@ import Login from "./pages/Login";
 import Shows from "./pages/Shows";
 import Show from "./pages/Show.jsx";
 import Profile from "./pages/Profile.jsx";
+import Shop from "./pages/Shop.jsx";
 
 import store from "./store";
 
@@ -31,6 +32,7 @@ ReactDOM.render(
         <Route path="show/:id" name="show" component={Show}></Route>
         <Route path="login" name="login" component={Login}></Route>
         <Route path="profile" name="profile" component={Profile}></Route>
+        <Route path="shop" name="shop" component={Shop}></Route>
       </Route>
     </Router>
   </Provider>,

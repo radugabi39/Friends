@@ -17,7 +17,6 @@ export function postReview(showId, description) {
 		axios.post("http://localhost:8081/Friends/review/saveReview", 
 			{
 				showId: showId,
-				userId: 1,
 				description: description
 			}, 
 			{
