@@ -106,7 +106,7 @@ export default class Shows extends React.Component {
         </div>
 
         <div>
-          <h2>Reviews: </h2>
+          <h2>Reviews</h2>
           <ul className="reviews">{mappedReviews}</ul>
         </div>
 

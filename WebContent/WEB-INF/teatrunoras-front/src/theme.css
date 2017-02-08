@@ -2,6 +2,7 @@
 	width: 100%;
 }
 
+/*CSS for Single Show Page*/
 .ratingBarWrapper {
 	position: relative;	
 	display: inline-block;
@@ -73,3 +74,4 @@
 	margin-left: 15px;
 	font-style: italic;
 }
+/*End CSS for Single Show Page*/

@@ -31,7 +31,7 @@ export default class Nav extends React.Component {
     cookie.remove('loginToken', []);
     cookie.remove('loginUsername', []);
     this.props.dispatch(setCurrentUser(''));
-    window.location.href = "http://localhost:8080/#/profile";
+    window.location.href = "http://localhost:8080/#/login";
   }
 
   render() {
@@ -40,7 +40,7 @@ export default class Nav extends React.Component {
     const navClass = collapsed ? "collapse" : "";
     var loginLi = (
       <li activeClassName="active">
-        <Link to="profile" onClick={this.toggleCollapse.bind(this)}>Login</Link>
+        <Link to="login" onClick={this.toggleCollapse.bind(this)}>Login</Link>
       </li>
     );
     if (cookie.load('loginUsername')) {
@@ -70,6 +70,9 @@ export default class Nav extends React.Component {
               </li>
               <li activeClassName="active">
                 <Link to="shows" onClick={this.toggleCollapse.bind(this)}>Shows</Link>
+              </li>
+              <li activeClassName="active">
+                <Link to="profile" onClick={this.toggleCollapse.bind(this)}>Profile</Link>
               </li>
               {loginLi}
             </ul>

@@ -1,5 +1,4 @@
 import axios from "axios";
-import request from "superagent";
 
 export function fetchReviewsForShow(id) {
   return function(dispatch) {

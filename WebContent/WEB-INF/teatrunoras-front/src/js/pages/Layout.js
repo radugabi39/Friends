@@ -8,7 +8,7 @@ export default class Layout extends React.Component {
   render() {
     const { location } = this.props;
     const containerStyle = {
-      marginTop: "40px"
+      marginTop: "60px"
     };
 
     return (
