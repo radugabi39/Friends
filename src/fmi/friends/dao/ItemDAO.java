@@ -46,11 +46,12 @@ public class ItemDAO  extends GenericDAO  {
 			User toUpdateUser=session.get(User.class, userID);
 			Item it=session.get(Item.class, itemID);
 			if(it!=null && toUpdateUser!=null){
-				if(it.getPrice().setScale(0,  RoundingMode.HALF_UP).intValue()<toUpdateUser.getPoints()){
+				if(it.getPrice().setScale(0,  RoundingMode.HALF_UP).intValue()<toUpdateUser.getPoints() && it.getStock()!=null && it.getStock()>0){
 					toUpdateUser.setPoints(toUpdateUser.getPoints()-it.getPrice().setScale(0,  RoundingMode.HALF_UP).intValue());
 					
 					session.save(toUpdateUser);
-					
+					it.setStock(it.getStock()-1);
+					session.save(it);
 					Orders ord= new Orders();
 					ord.setCreationDate(new Date());
 					ord.setItem(it);
