@@ -91,7 +91,7 @@ public class Shows {
 		this.name = name;
 	}
 
-	@Column(name = "DESCRIPTION", length = 100)
+	@Column(name = "DESCRIPTION", length = 500)
 	public String getDescription() {
 		return description;
 	}
