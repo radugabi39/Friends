@@ -75,3 +75,67 @@
 	font-style: italic;
 }
 /*End CSS for Single Show Page*/
+
+/*Home Recent Shows*/
+ul.homeRecentShowsUl {
+	padding: 0;
+}
+
+li.homeRecentShowsLi {
+	list-style: none;
+	margin-bottom: 20px;
+}
+
+.homeRecentShowsLiContainer {
+	height: 250px;
+	background-size: cover;
+	display: table;
+	width: 100%;
+}
+
+.homeRecentShowsLink {
+	display: table-cell;
+	vertical-align: bottom;
+}
+
+.homeRecentShowsLink .grayOverlay {
+	background-color: rgba(0,0,0,.3);
+	padding: 10px;
+}
+
+.homeRecentShowsLink .grayOverlay a {
+	color: white;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.homeRecentShowsLink .grayOverlay a:hover {
+	text-decoration: none;
+	color: #fda517;
+}
+/*End CSS for Home Recent Shows*/
+
+/*Slider Changes*/
+.sliderLink {
+	color: white;
+}
+
+.sliderLink:hover {
+	text-decoration: none;
+	color: #fda517;
+}
+
+.sliderLinkText {
+	padding: 10px;
+}
+
+.sliderLinkText .sliderLinkTextDesc {
+	padding-bottom: 10px; 
+}
+
+
+.sliderLinkText .sliderLinkTextName span {
+	float: right;
+	font-style: italic;
+}
+/*End Slider Changes*/
