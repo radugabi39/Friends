@@ -8,13 +8,15 @@ public class ItemModel {
 	private String description;
 	private BigDecimal price;
 	private Integer stock;
+	private String avatarURL;
 	
-	public ItemModel(String name, String description, BigDecimal price, Integer stock) {
+	public ItemModel(String name, String description, BigDecimal price, Integer stock,String avatarURL) {
 		super();
 		this.name = name;
 		this.description = description;
 		this.price = price;
 		this.stock = stock;
+		this.avatarURL = avatarURL;
 	}
 
 	public String getName() {
@@ -47,6 +49,14 @@ public class ItemModel {
 
 	public void setStock(Integer stock) {
 		this.stock = stock;
+	}
+
+	public String getAvatarURL() {
+		return avatarURL;
+	}
+
+	public void setAvatarURL(String avatarURL) {
+		this.avatarURL = avatarURL;
 	}
 	
 }
