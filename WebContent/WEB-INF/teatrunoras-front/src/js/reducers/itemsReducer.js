@@ -25,6 +25,11 @@ export default function reducer(state={
         for(var i=0; i < newItems.list.length; i++) {
           if (itemId === newItems.list[i].id) {
             newItems.list[i].stock--;
+            if (newItems.list[i].stock === 0) {
+              newItems.list.splice(i, i);
+            }
+
+            break;
           }
         }
 

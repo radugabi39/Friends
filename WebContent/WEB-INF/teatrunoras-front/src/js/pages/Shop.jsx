@@ -26,8 +26,11 @@ export default class Shop extends React.Component {
   	let itemsList = [];
 
   	if (typeof items.list !== 'undefined') {
-			itemsList = items.list.map(
-				item => 
+			itemsList = items.list.map(function(item) {
+        if (!item.stock) 
+          return null;
+
+        return (
 					<div className="col-md-6" key={item.id}>
             <div className="row singleItemContainer" style={{marginBottom: '20px'}}>
               <div className="col-md-4" style={{backgroundImage: 'url(' + item.avatarURL + ')', height: '170px', backgroundSize: 'cover'}} ></div>
@@ -42,7 +45,8 @@ export default class Shop extends React.Component {
               </div>
             </div>						
 					</div>
-			);		
+        )
+      });
 		}
 
     return (
