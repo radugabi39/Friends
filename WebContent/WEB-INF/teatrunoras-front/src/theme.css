@@ -14,9 +14,9 @@
 	cursor: pointer;
 }
 
-/*.ratingBar:hover {
+.ratingBar:hover {
 	color: #ccc;
-}*/
+}
 
 .ratingBarClickable span,
 .ratingBarOverlay span {
@@ -25,13 +25,13 @@
 	float: right;
 }
 
-/*.ratingBarClickable span:hover,
+.ratingBarClickable span:hover,
 .ratingBarClickable span:hover + span,
 .ratingBarClickable span:hover + span + span,
 .ratingBarClickable span:hover + span + span + span,
 .ratingBarClickable span:hover + span + span + span + span {
 	color: #ffce80;
-}*/
+}
 
 .ratingBarOverlay {
 	position: absolute;
@@ -43,9 +43,9 @@
 	overflow: hidden;
 }
 
-/*.ratingBar:hover .ratingBarOverlay {
+.ratingBar:hover .ratingBarOverlay {
 	display: none;
-}*/
+}
 
 .ratingBarOverlayInner {
 	width: 150px;

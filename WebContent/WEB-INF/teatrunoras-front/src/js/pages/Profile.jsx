@@ -36,7 +36,7 @@ export default class Profile extends React.Component {
 	                  <span className="glyphicon glyphicon-star" ></span>
 	                  <span className="glyphicon glyphicon-star" ></span>
 	                </div>
-	                <div className="ratingBarOverlayProfile" style={{width: (4 / 5 * 100).toString() + '%'}}>
+	                <div className="ratingBarOverlayProfile" style={{width: (review.rating / 5 * 100).toString() + '%'}}>
 	                  <div className="ratingBarOverlayInnerProfile">
 	                    <span className="glyphicon glyphicon-star"></span>
 	                    <span className="glyphicon glyphicon-star"></span>
@@ -48,7 +48,7 @@ export default class Profile extends React.Component {
 	              </div> 
 
 	              <div className="noVotesProfile">
-	                {'0 voturi ('}{review.points ? review.points + ' Puncte acumulate)' : '0 Puncte acumulate)'} 
+	                {review.noVotes ? review.noVotes + ' voturi (' : '0 voturi ('}{review.points ? review.points + ' Puncte acumulate)' : '0 Puncte acumulate)'} 
 	              </div>
             	</div>
 						</div>

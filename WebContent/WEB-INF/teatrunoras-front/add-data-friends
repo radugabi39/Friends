@@ -1,1 +1,8 @@
-INSERT INTO `friendsdb`.`ITEM` (`ID`, `CREATIONDATE`, `DESCRIPTION`, `NAME`, `PRICE`, `STOCK`) VALUES ('1', '2017-02-08 10:54:16', 'Desc', 'Prima Oferta', '15', '5');
+INSERT INTO `friendsdb`.`REVIEW` (`DESCRIPTION`, `SHOW_ID`, `USER_ID`) VALUES ('Desc', '3', '4');
+INSERT INTO `friendsdb`.`REVIEW` (`DESCRIPTION`, `SHOW_ID`, `USER_ID`) VALUES ('Desc', '4', '4');
+INSERT INTO `friendsdb`.`REVIEW` (`DESCRIPTION`, `SHOW_ID`, `USER_ID`) VALUES ('Desc', '5', '1');
+INSERT INTO `friendsdb`.`REVIEW` (`DESCRIPTION`, `SHOW_ID`, `USER_ID`) VALUES ('Desc', '6', '4');
+INSERT INTO `friendsdb`.`REVIEW` (`DESCRIPTION`, `SHOW_ID`, `USER_ID`) VALUES ('Desc', '7', '1');
+INSERT INTO `friendsdb`.`REVIEW` (`DESCRIPTION`, `SHOW_ID`, `USER_ID`) VALUES ('Desc', '8', '4');
+INSERT INTO `friendsdb`.`REVIEW` (`DESCRIPTION`, `SHOW_ID`, `USER_ID`) VALUES ('Desc', '9', '1');
+
