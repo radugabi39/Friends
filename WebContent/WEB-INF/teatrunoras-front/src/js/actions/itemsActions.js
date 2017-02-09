@@ -22,7 +22,7 @@ export function buyItem(itemId) {
 				}
 			})
 			.then(function (response) {
-			  dispatch({type: "BUY_ITEM_FULFILLED", payload: response});
+			  dispatch({type: "BUY_ITEM_FULFILLED", payload: itemId});
 			})
 		  .catch((err) => {
 		    dispatch({type: "BUY_ITEM_REJECTED", payload: err})

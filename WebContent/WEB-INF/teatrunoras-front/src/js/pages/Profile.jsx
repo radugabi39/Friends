@@ -59,19 +59,11 @@ export default class Profile extends React.Component {
 		if (typeof userProfile.itemList !== 'undefined') {
 			itemsList = userProfile.itemList.map(
 				item => 
-					<li>
-						<div>
-							<div>
-				           {item.name}
-				         </div>
-							<div>
-				           {item.price} Puncte
-				         </div>
-							<div>
-				           {new Date(item.purchaseDate).toUTCString()}
-				         </div>
-						</div>
-					</li>
+					<tr>
+			      <td>{item.name}</td>
+			      <td>{item.price}</td>
+			      <td>{new Date(item.purchaseDate).toUTCString()}</td>
+			    </tr>
 			);		
 		}
 
@@ -92,7 +84,17 @@ export default class Profile extends React.Component {
 
 	      <div>
 	      	<h2>Comenzi</h2>
-	      	<ul>{itemsList}</ul>
+	      	<table class="table table-sm table-striped table-hover">
+					  <thead>
+					    <tr>
+					      <th>Nume produs</th>
+					      <th>Puncte</th>
+					      <th>Data cumpararii</th>
+					    </tr>
+					  </thead>
+					  <tbody>{itemsList}</tbody>
+					</table>
+	      	<ul></ul>
 	      </div>
 
       </div>

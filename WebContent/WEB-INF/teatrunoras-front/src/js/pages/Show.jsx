@@ -106,7 +106,8 @@ export default class Shows extends React.Component {
         </div>
 
         <div>
-          <h2>Recenzii</h2>
+          <h2>Recenziile spectacolului</h2>
+          <p style={{fontStyle: 'italic'}}>(Voteaza recenziile de mai jos cu o nota de la 1 la 5 stele)</p>
           <ul className="reviews">{mappedReviews}</ul>
         </div>
 

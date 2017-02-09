@@ -16,7 +16,9 @@ export default class Shop extends React.Component {
   }
 
   dispatchBuyItem(itemId) {
-  	return this.props.dispatch(buyItem(itemId)); 
+    if(confirm('Sunteti sigur ca vreti sa achizitionati aceasta oferta?')) {
+    	return this.props.dispatch(buyItem(itemId)); 
+    }
   }
 
   render() {
@@ -26,15 +28,20 @@ export default class Shop extends React.Component {
   	if (typeof items.list !== 'undefined') {
 			itemsList = items.list.map(
 				item => 
-					<li key={item.id}>
-						<div>
-							<div>{item.name}</div>
-							<div>{item.description}</div>
-							<div>{item.price}</div>
-							<div>{item.stock}</div>
-							<div><span className="btn btn-primary" onClick={(itemId) => this.dispatchBuyItem(item.id)}>Cumpara</span></div>
-						</div>
-					</li>
+					<div className="col-md-6" key={item.id}>
+            <div className="row singleItemContainer" style={{marginBottom: '20px'}}>
+              <div className="col-md-4" style={{backgroundImage: 'url(' + item.avatarURL + ')', height: '170px', backgroundSize: 'cover'}} ></div>
+              <div className="col-md-8">
+                <div className="itemTitle">{item.name}</div>
+                <div>{item.description}</div>
+                <div>
+                  <span className="itemPrice">{item.price} puncte</span>
+                  <span className="itemStock">{item.stock} ramase</span>
+                </div>
+                <div className="buyButton"><span className="btn btn-primary" onClick={(itemId) => this.dispatchBuyItem(item.id)}>Cumpara</span></div>
+              </div>
+            </div>						
+					</div>
 			);		
 		}
 
@@ -44,7 +51,7 @@ export default class Shop extends React.Component {
 	        <h1>Oferte</h1>
 	      </div>
 
-	    	<ul>{itemsList}</ul>
+	    	<div className="row itemsContainer">{itemsList}</div>
     	</div>
     );
   }

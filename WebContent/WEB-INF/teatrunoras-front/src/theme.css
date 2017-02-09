@@ -164,6 +164,7 @@ li.homeRecentShowsLi {
 	color: white;
 	text-transform: uppercase;
 	font-weight: bold;
+	display: block;
 }
 
 .homeRecentShowsLink .grayOverlay a:hover {
@@ -175,6 +176,7 @@ li.homeRecentShowsLi {
 /*Slider Changes*/
 .sliderLink {
 	color: white;
+	display: block;
 }
 
 .sliderLink:hover {
@@ -196,3 +198,33 @@ li.homeRecentShowsLi {
 	font-style: italic;
 }
 /*End Slider Changes*/
+
+/*Shop Changes*/
+.singleItemContainer {
+  background: #eee;
+	margin-right: 10px;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.singleItemContainer .itemTitle {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+.singleItemContainer .buyButton {
+	padding-top: 10px;
+}
+
+.singleItemContainer .itemPrice, .itemStock {
+	font-style: italic;
+}
+
+.singleItemContainer .itemStock {
+	float: right;
+}
+
+.itemsContainer .col-md-8 {
+	padding: 10px 20px 10px 20px;
+}
+/*End Shop Changes*/
